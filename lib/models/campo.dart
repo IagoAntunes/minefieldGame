@@ -31,8 +31,6 @@ class Campo {
     if (_aberto) {
       return;
     } else if (_minado) {
-      _aberto = true;
-
       _explodido = true;
       throw ExplosaoException();
     } else if (vizinhancaSegura) {
@@ -42,6 +40,7 @@ class Campo {
         },
       );
     }
+    _aberto = true;
   }
 
   void revelarBombas() {
