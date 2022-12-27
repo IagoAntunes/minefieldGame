@@ -1,22 +1,30 @@
-import 'package:flutter/foundation.dart';
-import 'explosao_exception.dart';
+import 'package:mobx/mobx.dart';
 
-class Campo {
+part 'campo.store.g.dart';
+
+class Campo = _Campo with _$Campo;
+
+abstract class _Campo with Store {
   final int linha;
   final int coluna;
-  final List<Campo> vizinhos = [];
+  final List<_Campo> vizinhos = [];
 
+  @observable
   bool _aberto = false;
+  @observable
   bool _marcado = false;
+  @observable
   bool _minado = false;
+  @observable
   bool _explodido = false;
 
-  Campo({
+  _Campo({
     required this.linha,
     required this.coluna,
   });
 
-  void addVizinho(Campo vizinho) {
+  @action
+  void addVizinho(_Campo vizinho) {
     final deltaLinha = (this.linha - vizinho.linha).abs();
     final deltaColuna = (this.coluna - vizinho.coluna).abs();
 
@@ -27,36 +35,44 @@ class Campo {
     }
   }
 
+  @action
   void abrir() {
     if (_aberto) {
       return;
-    } else if (_minado) {
-      _explodido = true;
-      throw ExplosaoException();
-    } else if (vizinhancaSegura) {
-      vizinhos.forEach(
-        (element) {
-          element.abrir();
-        },
-      );
     }
+
     _aberto = true;
+
+    if (_minado) {
+      _explodido = true;
+      throw Exception();
+    }
+
+    if (vizinhancaSegura) {
+      for (var v in vizinhos) {
+        v.abrir();
+      }
+    }
   }
 
+  @action
   void revelarBombas() {
     if (_minado) {
       _aberto = true;
     }
   }
 
+  @action
   void minar() {
     _minado = true;
   }
 
+  @action
   void alternarMarcacao() {
     _marcado = !_marcado;
   }
 
+  @action
   void reiniciar() {
     _aberto = false;
     _marcado = false;
