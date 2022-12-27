@@ -10,7 +10,7 @@ class ResultWidget extends StatelessWidget implements PreferredSizeWidget {
     required this.onReiniciar,
   });
 
-  final bool venceu;
+  final bool? venceu;
   final Function onReiniciar;
 
   Color _getCor() {
