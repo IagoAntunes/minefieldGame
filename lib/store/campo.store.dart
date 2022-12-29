@@ -10,13 +10,15 @@ abstract class _Campo with Store {
   final List<_Campo> vizinhos = [];
 
   @observable
-  bool _aberto = false;
+  bool aberto = false;
   @observable
-  bool _marcado = false;
+  bool marcado = false;
   @observable
-  bool _minado = false;
+  bool minado = false;
   @observable
-  bool _explodido = false;
+  bool explodido = false;
+  @observable
+  String image = "";
 
   _Campo({
     required this.linha,
@@ -24,7 +26,7 @@ abstract class _Campo with Store {
   });
 
   @action
-  void addVizinho(_Campo vizinho) {
+  void addVizinho(Campo vizinho) {
     final deltaLinha = (this.linha - vizinho.linha).abs();
     final deltaColuna = (this.coluna - vizinho.coluna).abs();
 
@@ -37,14 +39,14 @@ abstract class _Campo with Store {
 
   @action
   void abrir() {
-    if (_aberto) {
+    if (aberto) {
       return;
     }
 
-    _aberto = true;
+    aberto = true;
 
-    if (_minado) {
-      _explodido = true;
+    if (minado) {
+      explodido = true;
       throw Exception();
     }
 
@@ -57,53 +59,37 @@ abstract class _Campo with Store {
 
   @action
   void revelarBombas() {
-    if (_minado) {
-      _aberto = true;
+    if (minado) {
+      aberto = true;
     }
   }
 
   @action
   void minar() {
-    _minado = true;
+    minado = true;
   }
 
   @action
   void alternarMarcacao() {
-    _marcado = !_marcado;
+    marcado = !marcado;
   }
 
   @action
   void reiniciar() {
-    _aberto = false;
-    _marcado = false;
-    _minado = false;
-    _explodido = false;
-  }
-
-  bool get minado {
-    return _minado;
-  }
-
-  bool get explodido {
-    return _explodido;
-  }
-
-  bool get aberto {
-    return _aberto;
-  }
-
-  bool get marcado {
-    return _marcado;
+    aberto = false;
+    marcado = false;
+    minado = false;
+    explodido = false;
   }
 
   bool get resolvido {
-    bool minadoEmarcado = _minado && _marcado;
-    bool seguroEAberto = !minado && _aberto;
+    bool minadoEmarcado = minado && marcado;
+    bool seguroEAberto = !minado && aberto;
     return minadoEmarcado || seguroEAberto;
   }
 
   bool get vizinhancaSegura {
-    return vizinhos.every((element) => element._minado == false);
+    return vizinhos.every((element) => element.minado == false);
   }
 
   int get qtdMinasVizinhanca {

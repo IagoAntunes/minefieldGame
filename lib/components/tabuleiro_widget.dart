@@ -1,8 +1,6 @@
 import 'package:campominado/components/campo_widget.dart';
 import 'package:campominado/store/tabuleiro.store.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/src/widgets/framework.dart';
-import 'package:flutter/src/widgets/placeholder.dart';
 import 'package:flutter_mobx/flutter_mobx.dart';
 
 import '../store/campo.store.dart';
@@ -21,21 +19,19 @@ class TabuleiroWidget extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Container(
-      child: GridView.count(
-        crossAxisCount: store.colunas!,
-        children: store.campos.map(
-          (e) {
-            return Observer(
-              builder: (context) => CampoWidget(
-                campo: e,
-                onAbrir: onAbrir,
-                onAlternarMarcacao: onAlternarMarcacao,
-              ),
-            );
-          },
-        ).toList(),
-      ),
+    return GridView.count(
+      crossAxisCount: store.colunas!,
+      children: store.campos.map(
+        (e) {
+          return Observer(
+            builder: (context) => CampoWidget(
+              campo: e,
+              onAbrir: onAbrir,
+              onAlternarMarcacao: onAlternarMarcacao,
+            ),
+          );
+        },
+      ).toList(),
     );
   }
 }

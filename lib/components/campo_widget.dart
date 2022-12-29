@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_mobx/flutter_mobx.dart';
 
 import '../store/campo.store.dart';
 
@@ -10,22 +11,27 @@ class CampoWidget extends StatelessWidget {
     required this.onAlternarMarcacao,
   });
 
-  Campo campo;
+  final Campo campo;
   void Function(Campo) onAbrir;
   void Function(Campo) onAlternarMarcacao;
 
-  Widget _getImage() {
+  String _getImage() {
     int qtdeMinas = campo.qtdMinasVizinhanca;
     if (campo.aberto && campo.minado && campo.explodido) {
-      return Image.asset('assets/images/bomba_0.jpeg');
+      campo.image = 'assets/images/bomba_0.jpeg';
+      return campo.image;
     } else if (campo.aberto && campo.minado) {
-      return Image.asset('assets/images/bomba_1.jpeg');
+      campo.image = 'assets/images/bomba_1.jpeg';
+      return campo.image;
     } else if (campo.aberto) {
-      return Image.asset('assets/images/aberto_$qtdeMinas.jpeg');
+      campo.image = 'assets/images/aberto_$qtdeMinas.jpeg';
+      return campo.image;
     } else if (campo.marcado) {
-      return Image.asset('assets/images/bandeira.jpeg');
+      campo.image = 'assets/images/bandeira.jpeg';
+      return campo.image;
     } else {
-      return Image.asset('assets/images/fechado.jpeg');
+      campo.image = 'assets/images/fechado.jpeg';
+      return campo.image;
     }
   }
 
@@ -34,7 +40,7 @@ class CampoWidget extends StatelessWidget {
     return InkWell(
       onTap: () => onAbrir(campo),
       onLongPress: () => onAlternarMarcacao(campo),
-      child: _getImage(),
+      child: Observer(builder: (context) => Image.asset(_getImage())),
     );
   }
 }

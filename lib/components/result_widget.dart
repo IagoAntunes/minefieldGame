@@ -1,10 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:flutter/src/widgets/framework.dart';
-import 'package:flutter/src/widgets/placeholder.dart';
-import 'package:flutter/widgets.dart';
 
 class ResultWidget extends StatelessWidget implements PreferredSizeWidget {
-  ResultWidget({
+  const ResultWidget({
     super.key,
     required this.venceu,
     required this.onReiniciar,
@@ -36,15 +33,15 @@ class ResultWidget extends StatelessWidget implements PreferredSizeWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      decoration: BoxDecoration(color: Colors.grey),
+      decoration: const BoxDecoration(color: Colors.grey),
       child: SafeArea(
         child: Container(
-          padding: EdgeInsets.all(10),
+          padding: const EdgeInsets.all(10),
           child: CircleAvatar(
             backgroundColor: _getCor(),
             child: IconButton(
-              padding: EdgeInsets.all(0),
-              onPressed: onReiniciar!(),
+              padding: const EdgeInsets.all(0),
+              onPressed: onReiniciar(),
               icon: Icon(
                 _getIcon(),
                 size: 35,
@@ -57,6 +54,5 @@ class ResultWidget extends StatelessWidget implements PreferredSizeWidget {
   }
 
   @override
-  // TODO: implement preferredSize
-  Size get preferredSize => Size.fromHeight(120);
+  Size get preferredSize => const Size.fromHeight(120);
 }

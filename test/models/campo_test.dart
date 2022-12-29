@@ -1,5 +1,3 @@
-import 'dart:math';
-
 import 'package:campominado/store/campo.store.dart';
 import 'package:flutter_test/flutter_test.dart';
 

@@ -9,64 +9,63 @@ part of 'campo.store.dart';
 // ignore_for_file: non_constant_identifier_names, unnecessary_brace_in_string_interps, unnecessary_lambdas, prefer_expression_function_bodies, lines_longer_than_80_chars, avoid_as, avoid_annotating_with_dynamic, no_leading_underscores_for_local_identifiers
 
 mixin _$Campo on _Campo, Store {
-  late final _$_abertoAtom = Atom(name: '_Campo._aberto', context: context);
+  late final _$abertoAtom = Atom(name: '_Campo.aberto', context: context);
 
   @override
-  bool get _aberto {
-    _$_abertoAtom.reportRead();
-    return super._aberto;
+  bool get aberto {
+    _$abertoAtom.reportRead();
+    return super.aberto;
   }
 
   @override
-  set _aberto(bool value) {
-    _$_abertoAtom.reportWrite(value, super._aberto, () {
-      super._aberto = value;
+  set aberto(bool value) {
+    _$abertoAtom.reportWrite(value, super.aberto, () {
+      super.aberto = value;
     });
   }
 
-  late final _$_marcadoAtom = Atom(name: '_Campo._marcado', context: context);
+  late final _$marcadoAtom = Atom(name: '_Campo.marcado', context: context);
 
   @override
-  bool get _marcado {
-    _$_marcadoAtom.reportRead();
-    return super._marcado;
+  bool get marcado {
+    _$marcadoAtom.reportRead();
+    return super.marcado;
   }
 
   @override
-  set _marcado(bool value) {
-    _$_marcadoAtom.reportWrite(value, super._marcado, () {
-      super._marcado = value;
+  set marcado(bool value) {
+    _$marcadoAtom.reportWrite(value, super.marcado, () {
+      super.marcado = value;
     });
   }
 
-  late final _$_minadoAtom = Atom(name: '_Campo._minado', context: context);
+  late final _$minadoAtom = Atom(name: '_Campo.minado', context: context);
 
   @override
-  bool get _minado {
-    _$_minadoAtom.reportRead();
-    return super._minado;
+  bool get minado {
+    _$minadoAtom.reportRead();
+    return super.minado;
   }
 
   @override
-  set _minado(bool value) {
-    _$_minadoAtom.reportWrite(value, super._minado, () {
-      super._minado = value;
+  set minado(bool value) {
+    _$minadoAtom.reportWrite(value, super.minado, () {
+      super.minado = value;
     });
   }
 
-  late final _$_explodidoAtom =
-      Atom(name: '_Campo._explodido', context: context);
+  late final _$explodidoAtom = Atom(name: '_Campo.explodido', context: context);
 
   @override
-  bool get _explodido {
-    _$_explodidoAtom.reportRead();
-    return super._explodido;
+  bool get explodido {
+    _$explodidoAtom.reportRead();
+    return super.explodido;
   }
 
   @override
-  set _explodido(bool value) {
-    _$_explodidoAtom.reportWrite(value, super._explodido, () {
-      super._explodido = value;
+  set explodido(bool value) {
+    _$explodidoAtom.reportWrite(value, super.explodido, () {
+      super.explodido = value;
     });
   }
 
@@ -74,7 +73,7 @@ mixin _$Campo on _Campo, Store {
       ActionController(name: '_Campo', context: context);
 
   @override
-  void addVizinho(_Campo vizinho) {
+  void addVizinho(Campo vizinho) {
     final _$actionInfo =
         _$_CampoActionController.startAction(name: '_Campo.addVizinho');
     try {
@@ -142,7 +141,10 @@ mixin _$Campo on _Campo, Store {
   @override
   String toString() {
     return '''
-
+aberto: ${aberto},
+marcado: ${marcado},
+minado: ${minado},
+explodido: ${explodido}
     ''';
   }
 }
